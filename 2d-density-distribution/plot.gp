@@ -1,11 +1,11 @@
 reset
 
 
-set xrange [-25:-1]
-set yrange [-25:-1]
+set xrange [-20:-5]
+set yrange [-20:-10]
 
-set dgrid3d 100,100
-set cntrparam level incremental 0,1,100
+set dgrid3d 200,200
+set cntrparam level incremental 0,1,200
 set table "contour.txt"
 splot "mean.dat" using 1:2:3 notitle
 unset table

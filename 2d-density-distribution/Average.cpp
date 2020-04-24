@@ -14,8 +14,8 @@ int main(int argc, char* argv[])
   unsigned int no_of_coloumn = atoi(argv[2]);
   unsigned int no_of_lines = atoi(argv[3]);
 
-  uint density_size = 100;
-  float dt = 0.1;
+  uint density_size = 300;
+  float dt = 25.0 / (1.0 * density_size);
   float x[density_size][density_size];
   float y[density_size][density_size];
   float density[density_size][density_size];
@@ -24,8 +24,8 @@ int main(int argc, char* argv[])
       for(uint j = 0;j < density_size;++j)
         {
          density[i][j] = 0;
-         x[i][j] = -1.0*j*0.25;
-         y[i][j] = -1.0*i*0.25;
+         x[i][j] = -1.0*j*dt;
+         y[i][j] = -1.0*i*dt;
         }
     }
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
                 {
                   for(uint jj = 0;jj < density_size;++jj)
                     {
-                      if(temp1 < y[ii][jj] + 0.25 && temp1 > y[ii][jj] - 0.25 && temp2 < x[ii][jj] + 0.25 && temp2 > x[ii][jj] - 0.25  ) 
+                      if(temp1 < y[ii][jj] + dt && temp1 > y[ii][jj] -dt && temp2 < x[ii][jj] + dt && temp2 > x[ii][jj] - dt  ) 
                         {
                           density[ii][jj] += 1; 
                         }
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
     {
       for(uint j = 0;j < density_size;++j)
         {
-         outfile << -1.0*j*0.25 << " " << -1.0*i*0.25 << " " << density[i][j]  << endl;
+         outfile << -1.0*j*dt << " " << -1.0*i*dt << " " << density[i][j]  << endl;
         }
     }
   outfile.close();
